@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         calendar=new GregorianCalendar();
          year=calendar.get(Calendar.YEAR) ;
          month=calendar.get(Calendar.MONTH)+1 ;//0~11補正1~12
-         day=calendar.get(Calendar.DAY_OF_MONTH) ;
+         day=calendar.get(Calendar.DAY_OF_MONTH) +1;//0~31補正
         start_Day_of_the_week=get_Day_of_the_week(year,month,day);//設為輸入的該年月的一號是星期幾
         Days_After_2000_1_1=get_Days_After_2000_1_1(year,month,day);//設為輸入的年月日是從2000/1/1開始之後過了幾天
 
@@ -141,11 +141,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.d( "MyLog" , "第" + (i + 1) + "条数据");
                 if (textDateCountLast > 0)//迴圈跑出有幾個上個月的天數(透過本月1號是星期幾來找出)。不能大於本月的起始星期
                 {
-                    String foo = "DateText" + textDateCountLast;
+                    String foo = "day_" + textDateCountLast;
                     Log.d("MyLog", "使用ID為" + foo);
-        //            int resID = getResources().getIdentifier(foo, "id", getPackageName());
-      //              TextView someDateText = (TextView) findViewById(resID);
-    //                someDateText.setText(Integer.toString(i));//日期設定為12月的第i天(31、30、29、28、27...
+                    int resID = getResources().getIdentifier(foo, "id", getPackageName());
+                    Log.d("MyLog", "使用ID為" + resID);
+                    Log.d("MyLog", "使用ID為" + R.id.day_1);
+                    TextView someDateText = (TextView) findViewById(resID);
+                    TextView tv1;
+                    tv1=(TextView)findViewById(R.id.day_1);
+                   // someDateText.setText(Integer.toString(i));//日期設定為12月的第i天(31、30、29、28、27...
+
+                    Log.d("MyLog", "使用TextView為" +someDateText);
+                    Log.d("MyLog", "使用TextView為" +tv1);
+                    Log.d("MyLog", "使用I為" +i);
+                    someDateText.setText(String.valueOf(31));//日期設定為12月的第i天(31、30、29、28、27...
 
                     textDateCountLast--;//每執行一次就-1，最後一個執行的是本星期的起始點
                 }
@@ -165,11 +174,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d( "MyLog" , "第" + (i + 1) + "条数据");
                 if (textDateCountLast > 0)
                 {
-                    String foo = "DateText" + textDateCountLast;
+                    String foo = "day_" + textDateCountLast;
                     Log.d("MyLog", "使用ID為" + foo);
-       //             int resID = getResources().getIdentifier(foo, "id", getPackageName());
-     //               TextView someDateText = (TextView) findViewById(resID);
-   //                 someDateText.setText(Integer.toString(i));
+                    int resID = getResources().getIdentifier(foo, "id", getPackageName());
+                    TextView someDateText = (TextView) findViewById(resID);
+                   someDateText.setText(Integer.toString(i));
                     textDateCountLast--;
                 }
                 else
@@ -188,11 +197,14 @@ public class MainActivity extends AppCompatActivity {
             dataList.add(bean);
             Log.d( "MyLog" , "第" + (i + 1) + "条数据");
 
-            String foo = "DateText" + textDateCount;//設定一個字串(起始日的星期幾)=DateText+星期幾
+            String foo = "day_" + textDateCount;//設定一個字串(起始日的星期幾)=DateText+星期幾
             Log.d( "MyLog" , "使用ID為"+foo);
-            //        int resID = getResources().getIdentifier(foo , "id" , getPackageName());
-            //          TextView someDateText = (TextView) findViewById(resID);//找到TextView
-//            someDateText.setText(Integer.toString(i));//設定TextView
+                    int resID = getResources().getIdentifier(foo , "id" , getPackageName());
+                      TextView someDateText = (TextView) findViewById(resID);//找到TextView
+            someDateText.setText(Integer.toString(i));//設定TextView
+            if(textDateCount==day){
+                someDateText.setTextColor(0xffff0000);
+            }
             textDateCount++;//往下一個DAY
         }
 //步驟三：設定下個月日期(最初幾天)
@@ -210,11 +222,11 @@ public class MainActivity extends AppCompatActivity {
             bean.name = String.valueOf(newMonthDate);
             dataList.add(bean);
             Log.d( "MyLog" , "第" + (i + 1) + "条数据");
-            String foo = "DateText" + i;
+            String foo = "day_" + i;
             Log.d( "MyLog" , "使用ID為"+foo);
-    //        int resID = getResources().getIdentifier(foo , "id" , getPackageName());
-  //          TextView someDateText = (TextView) findViewById(resID);
-//            someDateText.setText(Integer.toString(newMonthDate));
+            int resID = getResources().getIdentifier(foo , "id" , getPackageName());
+            TextView someDateText = (TextView) findViewById(resID);
+            someDateText.setText(Integer.toString(newMonthDate));
             newMonthDate++;
         }
         for (int i = 0; i < 30; i++) {
