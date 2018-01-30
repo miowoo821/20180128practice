@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         calendar=new GregorianCalendar();
          year=calendar.get(Calendar.YEAR) ;
          month=calendar.get(Calendar.MONTH)+1 ;//0~11補正1~12
-         day=calendar.get(Calendar.DAY_OF_MONTH) +1;//0~31補正
+         day=calendar.get(Calendar.DAY_OF_MONTH) ;
+        Log.d("究竟是幾號呢",String.valueOf(day));
         start_Day_of_the_week=get_Day_of_the_week(year,month,day);//設為輸入的該年月的一號是星期幾
         Days_After_2000_1_1=get_Days_After_2000_1_1(year,month,day);//設為輸入的年月日是從2000/1/1開始之後過了幾天
 
@@ -202,7 +203,9 @@ public class MainActivity extends AppCompatActivity {
                     int resID = getResources().getIdentifier(foo , "id" , getPackageName());
                       TextView someDateText = (TextView) findViewById(resID);//找到TextView
             someDateText.setText(Integer.toString(i));//設定TextView
-            if(textDateCount==day){
+            Log.d( "來猜第二次吧" , "使用ID為"+day);
+            Log.d( "來猜第二次吧" , "使用ID為"+day);
+            if(i==day){
                 someDateText.setTextColor(0xffff0000);
             }
             textDateCount++;//往下一個DAY
