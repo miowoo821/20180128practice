@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 : dataList.size() / item_grid_num + 1;
         for (int i = 0; i < 30; i++) {
             GridView gridView = new GridView(this);
-            GridViewAdapter adapter = new GridViewAdapter(dataList, i);
+            GridViewAdapter adapter = new GridViewAdapter(dataList, i,MainActivity.this);//剛剛在GridViewAdapter加了一個建構式的參數，所以共要給三個參數(第三個參數是context)
             gridView.setNumColumns(number_columns);
             gridView.setAdapter(adapter);
             gridList.add(gridView);
@@ -138,10 +138,10 @@ public class MainActivity extends AppCompatActivity {
             {
 
 //                4-1
-//                DataBean bean = new DataBean();
-//                bean.name = String.valueOf(i);
-//                dataList.add(bean);
-//                Log.d( "MyLog" , "第" + (i + 1) + "条数据");
+                DataBean bean = new DataBean();
+                bean.name = String.valueOf(i);
+                dataList.add(bean);
+                Log.d( "MyLog" , "第" + (i + 1) + "条数据");
 
 
 
@@ -175,10 +175,10 @@ public class MainActivity extends AppCompatActivity {
             for (int i = MONTH_LENGTH_LIST[month - 2]; 1 > 0; i--)//如果輸入的月份不是1月，則跑一個上個月的迴圈(二月跑一月，三月跑二月)
             {
 //                4-2
-//                DataBean bean = new DataBean();
-//                bean.name = String.valueOf(i);
-//                dataList.add(bean);
-//                Log.d( "MyLog" , "第" + (i + 1) + "条数据");
+                DataBean bean = new DataBean();
+                bean.name = String.valueOf(i);
+                dataList.add(bean);
+                Log.d( "MyLog" , "第" + (i + 1) + "条数据");
                 if (textDateCountLast > 0)
                 {
                     String foo = "day_" + textDateCountLast;
@@ -199,10 +199,10 @@ public class MainActivity extends AppCompatActivity {
         for(int i=1; i<=MONTH_LENGTH_LIST[month-1]; ++i)//抓出陣列裡面對應的月份(從0開始所以要-1)，接著從1號開始迴圈到該月份的最後一天
         {
 //            4-3
-//            DataBean bean = new DataBean();
-//            bean.name = String.valueOf(i);
-//            dataList.add(bean);
-//            Log.d( "MyLog" , "第" + (i + 1) + "条数据");
+            DataBean bean = new DataBean();
+            bean.name = String.valueOf(i);
+            dataList.add(bean);
+            Log.d( "MyLog" , "第" + (i + 1) + "条数据");
 
             String foo = "day_" + textDateCount;//設定一個字串(起始日的星期幾)=DateText+星期幾
             Log.d( "MyLog" , "使用ID為"+foo);
@@ -229,10 +229,10 @@ public class MainActivity extends AppCompatActivity {
         //i的起始值為本月月初是星期幾，加上本月天數可算出本月結束是星期幾，
 //
 //            4-4
-//            DataBean bean = new DataBean();
-//            bean.name = String.valueOf(newMonthDate);
-//            dataList.add(bean);
-//            Log.d( "MyLog" , "第" + (i + 1) + "条数据");
+            DataBean bean = new DataBean();
+            bean.name = String.valueOf(newMonthDate);
+            dataList.add(bean);
+            Log.d( "MyLog" , "第" + (i + 1) + "条数据");
 
             String foo = "day_" + i;
             Log.d( "MyLog" , "使用ID為"+foo);
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++) {
             GridView gridView = new GridView(this);
-            GridViewAdapter adapter = new GridViewAdapter(dataList, i);
+            GridViewAdapter adapter = new GridViewAdapter(dataList, i,MainActivity.this);
             gridView.setNumColumns(number_columns);
             gridView.setAdapter(adapter);
             gridList.add(gridView);

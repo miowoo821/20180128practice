@@ -1,5 +1,7 @@
 package com.example.mio.a20180128practice;
 
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +21,10 @@ import java.util.List;
 
 public class GridViewAdapter extends BaseAdapter {
     private List<DataBean> dataList;
+    Context context;
+    GridViewAdapter(List<DataBean> datas, int page,Context context) {//參數多給一個context
+        this.context=context;
 
-    GridViewAdapter(List<DataBean> datas, int page) {
         dataList = new ArrayList<>();
         //start end分别代表要显示的数组在总数据List中的开始和结束位置
         int start = page * MainActivity.item_grid_num;
@@ -75,17 +79,79 @@ public class GridViewAdapter extends BaseAdapter {
            // mHolder.iv_img.setImageResource(R.mipmap.group_icon);
             mHolder.tv_text.setText(bean.name);
         }
+//---------------------------
+//
+//        LayoutInflater inflater = LayoutInflater.from(context);
+//        itemView = inflater.inflate(R.layout.test, null);
+
+        itemView= LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.test, viewGroup, false);
+
+        AppCompatActivity appCompatActivity=new AppCompatActivity();
+
+        for(int i1=1;i1<43;i1++) {
+
+            String foo = "day_" + i1;
+            int resID =  itemView.getResources().getIdentifier(foo, "id", null);
+            //上面這行抓不到這個ID，但是在MainActivity裡面抓的到，因為這個表格有放到activiy_main?
+            TextView someDateText = (TextView) itemView.findViewById(resID);
+
+            for(int i2=1;i2<4;i2++){
+                String foo2 = "day_" + i1+"_"+i2;
+                int resID2 =  itemView.getResources().getIdentifier(foo2, "id", null);
+                TextView someDateText2 = (TextView) itemView.findViewById(resID2);
+            }
+
+        }
+//---------------------------------------------
+
         return itemView;
     }
     private class ViewHolder {
         LinearLayout linearLayout;
         private ImageView iv_img;
         private TextView tv_text;
+
+      public ViewHolder(){
+          ArrayList<String> linearLayoutlist;
+          ArrayList<String> textlist;
+
+          linearLayoutlist=new ArrayList<>();
+          textlist=new ArrayList<>();
+
+          for(int i=1;i<7;i++){
+              linearLayoutlist.add("row_"+i);
+              for(int i1=1;i1<8;i1++){
+                  linearLayoutlist.add("row_"+i+"_"+i1);
+              }
+          }
+
+          for(int i1=1;i1<43;i1++) {
+
+              textlist.add("day_" + i1);
+
+              for(int i2=1;i2<4;i2++){
+                  textlist.add( "day_" + i1+"_"+i2);
+              }
+
+          }
+
+          Log.d("textlist","的成員有："+textlist);
+
+          TextView rtextlist[]={};
+          rtextlist[1]=(TextView)1111111;
+          TextView tv = new TextView(this)
+                  tv.getId()
+for(TextView o:textlist ){
+
+}
+
+
+
+      }
+
+
     }
 
-//    作者：_小马快跑_
-//    链接：https://www.jianshu.com/p/bf0a63afd722
-//    來源：简书
-//    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 }
 
