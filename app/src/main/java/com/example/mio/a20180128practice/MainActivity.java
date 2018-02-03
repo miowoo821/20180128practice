@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         start_Day_of_the_week=get_Day_of_the_week(year,month,day);//設為輸入的該年月的一號是星期幾
         Days_After_2000_1_1=get_Days_After_2000_1_1(year,month,day);//設為輸入的年月日是從2000/1/1開始之後過了幾天
 
-
+        setYearMonthDay();
         initViews();
        // initDatas();
         setCalendar(year,month,day);
@@ -57,11 +57,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("HHG12=",String.valueOf(view_pager.getCurrentItem()));
     }
 
-
     private void initViews() {
         //初始化ViewPager
         view_pager = (ViewPager) findViewById(R.id.view_pager);
-        mAdapter = new ViewPagerAdapter();
+            mAdapter = new ViewPagerAdapter();
         view_pager.setAdapter(mAdapter);
         dataList = new ArrayList<>();
         //圆点指示器
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 //----------------------------------------------------------------------------------------------
-
 
     public void setCalendar(int year,int month,int day)
     {
@@ -246,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             GridView gridView = new GridView(this);
             GridViewAdapter adapter = new GridViewAdapter(dataList, i,MainActivity.this);
             gridView.setNumColumns(number_columns);
@@ -268,8 +266,18 @@ public class MainActivity extends AppCompatActivity {
             }
             //每次回圈決定下一年的  是星期幾
         }
+
+
+
+        for(int i=0; i<month-1; i++){
+            DAY_2000_1_1 += MONTH_LENGTH_LIST[i];
+        }
+
+
         int Day_of_the_week=(DAY_2000_1_1)%7;
         Log.d("GFDHDFGHGJGH",String.valueOf(Day_of_the_week));
+
+
         return Day_of_the_week;
     }
 
@@ -314,7 +322,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void setYearMonthDay()
+    {
+        if( (year%400==0) || ( year%4==0 && year%100!=0 ) )
+        {
+            Log.d( "MyLog" , "Leap Year" );
+            MONTH_LENGTH_LIST[1] = 29;
 
+        }
+        else
+        {
+            Log.d( "MyLog" , "Average Year" );
+            MONTH_LENGTH_LIST[1] = 28;
+
+        }
+    }
 
 
 

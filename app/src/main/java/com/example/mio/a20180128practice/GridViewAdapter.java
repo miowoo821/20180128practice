@@ -51,7 +51,8 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View itemView, ViewGroup viewGroup) {
-        ViewHolder mHolder=new ViewHolder();
+        ViewHolder mHolder;
+
        // mHolder.linearLayout=itemView.findViewById(R.id.linearLayout);
 //        RelativeLayout linearLayout;
 //        linearLayout= viewGroup.findViewById(R.id.linearLayout)   ;
@@ -68,18 +69,23 @@ public class GridViewAdapter extends BaseAdapter {
                     .inflate(R.layout.item_gridview, viewGroup, false);
             mHolder.iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
             mHolder.tv_text = (TextView) itemView.findViewById(R.id.tv_text);
+
             itemView.setTag(mHolder);
         }
         else {
+
             mHolder = (ViewHolder) itemView.getTag();
         }
-        Log.d("GGGG="+i,String.valueOf(dataList.get(i)));
+        Log.d("GGGG20180203="+i,String.valueOf(dataList.get(i)));
         DataBean bean = dataList.get(i);
-        if (bean != null) {
-           // mHolder.iv_img.setImageResource(R.mipmap.group_icon);
-            mHolder.tv_text.setText(bean.name);
-        }
-//---------------------------
+        Log.d("GGGG20180203001="+i,String.valueOf(mHolder));
+//        if (bean != null) {
+//           // mHolder.iv_img.setImageResource(R.mipmap.group_icon);
+//
+//            Log.d("GGGG="+i,String.valueOf(mHolder));
+//            mHolder.tv_text.setText(bean.name);
+//        }
+////---------------------------
 //
 //        LayoutInflater inflater = LayoutInflater.from(context);
 //        itemView = inflater.inflate(R.layout.test, null);
@@ -107,48 +113,47 @@ public class GridViewAdapter extends BaseAdapter {
 
         return itemView;
     }
-    private class ViewHolder {
+     static class ViewHolder {
         LinearLayout linearLayout;
-        private ImageView iv_img;
-        private TextView tv_text;
+         ImageView iv_img;
+         TextView tv_text;
 
-      public ViewHolder(){
-          ArrayList<String> linearLayoutlist;
-          ArrayList<String> textlist;
-
-          linearLayoutlist=new ArrayList<>();
-          textlist=new ArrayList<>();
-
-          for(int i=1;i<7;i++){
-              linearLayoutlist.add("row_"+i);
-              for(int i1=1;i1<8;i1++){
-                  linearLayoutlist.add("row_"+i+"_"+i1);
-              }
-          }
-
-          for(int i1=1;i1<43;i1++) {
-
-              textlist.add("day_" + i1);
-
-              for(int i2=1;i2<4;i2++){
-                  textlist.add( "day_" + i1+"_"+i2);
-              }
-
-          }
-
-          Log.d("textlist","的成員有："+textlist);
-
-          TextView rtextlist[]={};
-          rtextlist[1]=(TextView)1111111;
-          TextView tv = new TextView(this)
-                  tv.getId()
-for(TextView o:textlist ){
-
-}
-
-
-
-      }
+//      public ViewHolder(){
+//          ArrayList<String> linearLayoutlist;
+//          ArrayList<String> textlist;
+//
+//          linearLayoutlist=new ArrayList<>();
+//          textlist=new ArrayList<>();
+//
+//          for(int i=1;i<7;i++){
+//              linearLayoutlist.add("row_"+i);
+//              for(int i1=1;i1<8;i1++){
+//                  linearLayoutlist.add("row_"+i+"_"+i1);
+//              }
+//          }
+//
+//          for(int i1=1;i1<43;i1++) {
+//
+//              textlist.add("day_" + i1);
+//
+//              for(int i2=1;i2<4;i2++){
+//                  textlist.add( "day_" + i1+"_"+i2);
+//              }
+//
+//          }
+//
+//          Log.d("textlist","的成員有："+textlist);
+//
+////          TextView rtextlist[]={};
+////          rtextlist[1]=(TextView)1111111;
+////          TextView tv = new TextView(this)
+////                  tv.getId()
+////for(TextView o:textlist ){
+////}
+//
+//
+//
+//      }
 
 
     }
